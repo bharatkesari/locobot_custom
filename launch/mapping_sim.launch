@@ -20,4 +20,11 @@
 
     <!-- launch the gazebo sim using the interbotix launch file -->
     <include file="$(find interbotix_xslocobot_gazebo)/launch/xslocobot_gazebo.launch" pass_all_args="true"/>
+
+    <!-- run gmapping node -->
+    <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">
+        <remap from="scan" to="locobot/scan" />
+        <param name="odom_frame" value="locobot/odom" />
+        <param name="base_frame" value="locobot/base_link" />
+    </node>
 </launch>
